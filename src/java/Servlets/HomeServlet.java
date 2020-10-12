@@ -18,11 +18,12 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         HttpSession session = request.getSession();
         String message = "";
         
-        User user =((User)session.getAttribute("username"));
-        if(user == null){
+        String logout = request.getParameter("logout");
+        if(logout != null){
             user = new User();
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
