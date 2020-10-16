@@ -20,16 +20,13 @@ public class HomeServlet extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-        String message = "";
         
-        String logout = request.getParameter("logout");
-        if(logout != null){
-            user = new User();
+        
+        if(session.isNew()){
+            User user = new User();
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
-        else{
-            request.setAttribute("username", user);
-        }    
+           
         getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
     }
 
